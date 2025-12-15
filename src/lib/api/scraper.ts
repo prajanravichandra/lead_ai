@@ -9,11 +9,11 @@ export type ScrapeLeadsRequest = {
 };
 
 export async function scrapeLeads(data: ScrapeLeadsRequest) {
-  const response = await fetch(process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL ?? "", {
+  // Call through Next.js API proxy to avoid CORS issues and hide webhook URL.
+  const response = await fetch("/api/scrape", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-COMET-TOKEN": process.env.NEXT_PUBLIC_N8N_TOKEN ?? "",
     },
     body: JSON.stringify(data),
   });
