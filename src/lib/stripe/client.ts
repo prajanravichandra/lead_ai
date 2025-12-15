@@ -5,6 +5,7 @@ export const stripeClient = () => {
   if (!secret) {
     throw new Error("STRIPE_SECRET_KEY is not set");
   }
-  return new Stripe(secret, { apiVersion: "2024-06-20" });
+  // Use package default API version to avoid type mismatch during deploy.
+  return new Stripe(secret);
 };
 
