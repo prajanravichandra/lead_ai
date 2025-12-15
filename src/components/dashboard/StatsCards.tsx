@@ -1,17 +1,29 @@
-type Stat = {
-  label: string;
-  value: string;
-  helper?: string;
+type StatsCardsProps = {
+  totalLeads?: number;
+  thisMonth?: number;
+  verified?: number;
+  googleCount?: number;
+  instagramCount?: number;
 };
 
-const stats: Stat[] = [
-  { label: "Total leads", value: "0" },
-  { label: "This month", value: "0" },
-  { label: "Verified emails", value: "0" },
-  { label: "Google vs Instagram", value: "0 / 0", helper: "GM / IG" },
-];
+const StatsCards = ({
+  totalLeads = 0,
+  thisMonth = 0,
+  verified = 0,
+  googleCount = 0,
+  instagramCount = 0,
+}: StatsCardsProps) => {
+  const stats = [
+    { label: "Total leads", value: totalLeads.toLocaleString() },
+    { label: "This month", value: thisMonth.toLocaleString() },
+    { label: "Verified emails", value: verified.toLocaleString() },
+    {
+      label: "Google vs Instagram",
+      value: `${googleCount.toLocaleString()} / ${instagramCount.toLocaleString()}`,
+      helper: "GM / IG",
+    },
+  ];
 
-const StatsCards = () => {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {stats.map((stat) => (
