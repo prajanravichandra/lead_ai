@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Ensure this route is treated as dynamic and always included in the build.
+export const dynamic = "force-dynamic";
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -28,5 +31,11 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// Simple GET to verify the route exists in deployments.
+export async function GET() {
+  return NextResponse.json({ ok: true });
+}
+
 
 
